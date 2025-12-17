@@ -1,0 +1,18 @@
+﻿using Wardrobe_Inventory.Models;
+
+namespace Wardrobe_Inventory.Services;
+
+public interface IClothingItemService
+{
+    public Task AddClothingItemAsync(ClothingItem item);
+
+    public Task<List<ClothingItem>> GetAllClothingItemsAsync();
+
+    public Task<ClothingItem> GetClothingItemAsync(int id);
+
+    public Task UpdateClothingItemAsync(ClothingItem item);
+
+    public Task DeleteClothingItemAsync(int id);
+
+    public Task<List<ClothingItem>> SearchClothes(string searchFilter);
+}

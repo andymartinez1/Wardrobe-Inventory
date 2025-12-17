@@ -7,9 +7,18 @@ public class ClothingCategory
     [Key]
     public int Id { get; set; }
 
-    [Required]
-    [MaxLength(100)]
-    public string Name { get; set; } = null!;
+    public ClothingType ClothingType { get; set; }
 
     public List<ClothingItem>? Items { get; set; }
+}
+
+public enum ClothingType
+{
+    Hat,
+    Shirt,
+    Jacket,
+    Shorts,
+    Pants,
+    Shoes,
+    Boots,
 }

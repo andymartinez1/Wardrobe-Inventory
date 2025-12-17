@@ -1,5 +1,6 @@
 using Wardrobe_Inventory.Components;
 using Wardrobe_Inventory.Data;
+using Wardrobe_Inventory.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
 builder.Services.AddDbContext<WardrobeDbContext>();
+builder.Services.AddScoped<IClothingItemService, ClothingItemService>();
 
 var app = builder.Build();
 

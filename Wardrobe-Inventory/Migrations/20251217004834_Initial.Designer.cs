@@ -12,7 +12,7 @@ using Wardrobe_Inventory.Data;
 namespace Wardrobe_Inventory.Migrations
 {
     [DbContext(typeof(WardrobeDbContext))]
-    [Migration("20251216184528_Initial")]
+    [Migration("20251217004834_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -77,9 +77,6 @@ namespace Wardrobe_Inventory.Migrations
 
                     b.Property<string>("Color")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsFavorite")

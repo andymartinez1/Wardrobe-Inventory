@@ -5,14 +5,14 @@ namespace Wardrobe_Inventory.Data;
 
 public class WardrobeDbContext : DbContext
 {
-    public WardrobeDbContext(DbContextOptions<WardrobeDbContext> options) : base(options)
-    {
-    }
+    public WardrobeDbContext(DbContextOptions<WardrobeDbContext> options)
+        : base(options) { }
 
     public DbSet<Brand> Brands { get; set; }
     public DbSet<ClothingCategory> Categories { get; set; }
     public DbSet<ClothingItem> Items { get; set; }
     public DbSet<ItemImage> Images { get; set; }
+    public DbSet<Size> Size { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

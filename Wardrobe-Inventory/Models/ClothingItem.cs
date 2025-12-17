@@ -11,8 +11,6 @@ public class ClothingItem
     [MaxLength(200)]
     public string Name { get; set; } = string.Empty;
 
-    public string? Description { get; set; }
-
     public ClothingCategory? Category { get; set; }
 
     public Brand? Brand { get; set; }
@@ -23,7 +21,7 @@ public class ClothingItem
 
     public bool IsFavorite { get; set; } = false;
 
-    public DateTime? PurchasedDate { get; set; }
+    public DateTime PurchasedDate { get; set; }
 
     public ICollection<ItemImage>? Images { get; set; }
 }

@@ -76,9 +76,6 @@ namespace Wardrobe_Inventory.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsFavorite")
                         .HasColumnType("bit");
 

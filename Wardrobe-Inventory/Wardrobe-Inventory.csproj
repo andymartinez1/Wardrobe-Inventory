@@ -9,8 +9,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Enums\" />
-    <Folder Include="Repository\" />
-    <Folder Include="Services\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>

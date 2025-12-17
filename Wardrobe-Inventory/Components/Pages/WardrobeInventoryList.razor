@@ -1,10 +1,88 @@
 ﻿@page "/WardrobeInventoryList"
 
-<h3>Wardrobe Inventory</h3>
-@ClothingItems
+<h1>Wardrobe Inventory</h1>
+<br/>
+<a href="" class="btn btn-primary">Add Clothing Item</a>
+<br/>
+<br/>
+
+
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Search Clothes" @bind-value="ClothingFilter"
+           @bind-value:event="oninput"/>
+    <button class="btn btn-outline-secondary" type="button" id="button-search" @onclick="HandleSearch">Search
+    </button>
+</div>
+
+<br/>
+
+@if (AllItems == null)
+{
+    <p>Loading...</p>
+}
+else if (!AllItems.Any())
+{
+    <p>No clothing items found.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Brand</th>
+            <th>Size</th>
+            <th>Color</th>
+            <th>Purchase Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in AllItems)
+        {
+            <tr @key="item.Id">
+                <td>@item.Name</td>
+                <td>@item.Category.ClothingType.ToString()</td>
+                <td>@item.Brand.Name</td>
+                <td>@item.Size.ToString()</td>
+                <td>@item.Color</td>
+                <td>@item.PurchasedDate.ToShortDateString()</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
 
 @code {
+    [Inject] public IClothingItemService ClothingItemService { get; set; }
 
-    public List<ClothingItem> ClothingItems { get; set; }
+    private string _clothingFilter;
+
+
+    private List<ClothingItem> AllItems = new();
+
+    private string ClothingFilter
+    {
+        get => _clothingFilter;
+        set => _clothingFilter = value ?? "";
+    }
+
+    private bool IsLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var fetched = await ClothingItemService.GetAllClothingItemsAsync();
+
+        AllItems = fetched?.ToList() ?? new List<ClothingItem>();
+
+
+        IsLoading = false;
+    }
+
+
+    private void HandleSearch()
+    {
+    }
 
 }
