@@ -1,5 +1,30 @@
+:root {
+    --primary-box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+    --color-grey: #595959;
+    --color-green: #5D9477;
+    --color-gold: #DBC686;
+    --color-copper: #D97F6F;
+    --color-maroon: #A64E80;
+}
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 85vw;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--color-green), var(--color-gold), var(--color-copper));
+}
+
+h1 {
+    text-align: center;
+    color: var(--color-grey);
+}
+
+h1:focus {
+    outline: none;
 }
 
 a, .btn-link {
@@ -20,12 +45,8 @@ a, .btn-link {
     padding-top: 1.1rem;
 }
 
-h1:focus {
-    outline: none;
-}
-
-.table {
-    border-radius: 6px;
+.table-custom{
+    box-shadow: var(--primary-box-shadow);
 }
 
 .valid.modified:not([type=checkbox]) {

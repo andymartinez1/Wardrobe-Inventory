@@ -22,10 +22,7 @@ public class ClothingItemService : IClothingItemService
 
     public async Task<List<ClothingItem>> GetAllClothingItemsAsync()
     {
-        var items = _wardrobeDbContext
-            .Items.Include(i => i.Category)
-            .Include(i => i.Brand)
-            .ToListAsync();
+        var items = _wardrobeDbContext.Items.ToListAsync();
 
         return await items;
     }

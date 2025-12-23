@@ -11,123 +11,85 @@ public static class SeedDatabase
             serviceProvider.GetRequiredService<DbContextOptions<WardrobeDbContext>>()
         );
 
-        // Ensure database exists (optional)
+        // Ensure database exists
         await context.Database.EnsureCreatedAsync();
 
-        // If any of these tables already contain data, skip seeding
-        if (
-            await context.Items.AnyAsync()
-            || await context.Brands.AnyAsync()
-            || await context.Categories.AnyAsync()
-        )
+        // If table already contains data, skip seeding
+        if (await context.Items.AnyAsync())
             return;
 
+        var clothingItems = new List<ClothingItem>
         {
-            var brands = new List<Brand>
+            new()
             {
-                new() { Name = "Nike" },
-                new() { Name = "Adidas" },
-                new() { Name = "Under Armour" },
-            };
-
-            var clothes = new List<ClothingItem>
+                Name = "T-Shirt",
+                Brand = "Adidas",
+                Category = ClothingCategory.Shirts,
+                Color = "Blue",
+                ShirtSize = ShirtSize.M,
+            },
+            new()
             {
-                new()
-                {
-                    Brand = brands[0],
-                    Category = new ClothingCategory { ClothingType = ClothingType.Shirt },
-                    Name = "Classic Polo T-shirt",
-                    IsFavorite = true,
-                    Color = "Red",
-                    PurchasedDate = DateTime.Now,
-                },
-                new()
-                {
-                    Brand = brands[1],
-                    Category = new ClothingCategory { ClothingType = ClothingType.Shoes },
-                    Name = "Tennis Shoes",
-                    IsFavorite = false,
-                    Color = "Black",
-                    PurchasedDate = DateTime.Now.AddHours(-1),
-                },
-                new()
-                {
-                    Brand = brands[2],
-                    Category = new ClothingCategory { ClothingType = ClothingType.Jacket },
-                    Name = "Performance Jacket",
-                    IsFavorite = false,
-                    Color = "Blue",
-                    PurchasedDate = DateTime.Now.AddDays(-10),
-                },
-                new()
-                {
-                    Brand = brands[0],
-                    Category = new ClothingCategory { ClothingType = ClothingType.Pants },
-                    Name = "Slim Jeans",
-                    IsFavorite = true,
-                    Color = "Dark Blue",
-                    PurchasedDate = DateTime.Now.AddMonths(-2),
-                },
-                new()
-                {
-                    Brand = brands[1],
-                    Category = new ClothingCategory { ClothingType = ClothingType.Pants },
-                    Name = "Casual Chinos",
-                    IsFavorite = false,
-                    Color = "Khaki",
-                    PurchasedDate = DateTime.Now.AddMonths(-1),
-                },
-                new()
-                {
-                    Brand = brands[2],
-                    Category = new ClothingCategory { ClothingType = ClothingType.Shirt },
-                    Name = "Graphic Tee",
-                    IsFavorite = false,
-                    Color = "White",
-                    PurchasedDate = DateTime.Now.AddDays(-30),
-                },
-                new()
-                {
-                    Brand = brands[0],
-                    Category = new ClothingCategory { ClothingType = ClothingType.Shoes },
-                    Name = "Running Sneakers",
-                    IsFavorite = true,
-                    Color = "White",
-                    PurchasedDate = DateTime.Now.AddDays(-100),
-                },
-                new()
-                {
-                    Brand = brands[1],
-                    Category = new ClothingCategory { ClothingType = ClothingType.Jacket },
-                    Name = "Windbreaker",
-                    IsFavorite = false,
-                    Color = "Green",
-                    PurchasedDate = DateTime.Now.AddMonths(-6),
-                },
-                new()
-                {
-                    Brand = brands[2],
-                    Category = new ClothingCategory { ClothingType = ClothingType.Jacket },
-                    Name = "Cozy Hoodie",
-                    IsFavorite = true,
-                    Color = "Grey",
-                    PurchasedDate = DateTime.Now.AddYears(-1),
-                },
-                new()
-                {
-                    Brand = brands[1],
-                    Category = new ClothingCategory { ClothingType = ClothingType.Pants },
-                    Name = "Dress Pants",
-                    IsFavorite = false,
-                    Color = "Black",
-                    PurchasedDate = DateTime.Now.AddDays(-12),
-                },
-            };
+                Name = "Jeans",
+                Brand = "Nike",
+                Category = ClothingCategory.Jeans,
+                Color = "Black",
+                JeansInseam = 30,
+                JeansWaist = 32,
+            },
+            new()
+            {
+                Name = "Jacket",
+                Brand = "Under Armour",
+                Category = ClothingCategory.Jackets,
+                Color = "Green",
+                ShirtSize = ShirtSize.L,
+            },
+            new()
+            {
+                Name = "Hoodie",
+                Brand = "Champion",
+                Category = ClothingCategory.Jackets,
+                Color = "Gray",
+                ShirtSize = ShirtSize.L,
+            },
+            new()
+            {
+                Name = "Polo",
+                Brand = "Ralph Lauren",
+                Category = ClothingCategory.Shirts,
+                Color = "Navy",
+                ShirtSize = ShirtSize.L,
+            },
+            new()
+            {
+                Name = "Dress Shirt",
+                Brand = "Calvin Klein",
+                Category = ClothingCategory.Shirts,
+                Color = "White",
+                ShirtSize = ShirtSize.M,
+            },
+            new()
+            {
+                Name = "Slim Jeans",
+                Brand = "Levi's",
+                Category = ClothingCategory.Jeans,
+                Color = "Dark Blue",
+                JeansInseam = 32,
+                JeansWaist = 31,
+            },
+            new()
+            {
+                Name = "Air Force",
+                Brand = "Nike",
+                Category = ClothingCategory.Sneakers,
+                Color = "White",
+                ShoeSize = 11.5m,
+            },
+        };
 
-            context.Brands.AddRange(brands);
-            context.Items.AddRange(clothes);
+        context.AddRange(clothingItems);
 
-            await context.SaveChangesAsync();
-        }
+        await context.SaveChangesAsync();
     }
 }

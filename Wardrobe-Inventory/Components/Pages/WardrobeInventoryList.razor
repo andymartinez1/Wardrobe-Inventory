@@ -1,88 +1,103 @@
-﻿@page "/WardrobeInventoryList"
-
-<h1>Wardrobe Inventory</h1>
-<br/>
-<a href="" class="btn btn-primary">Add Clothing Item</a>
-<br/>
-<br/>
+﻿@page "/"
+@page "/WardrobeInventoryList"
+@using Wardrobe_Inventory.Components.WardrobeComponents
 
 
-<div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Search Clothes" @bind-value="ClothingFilter"
-           @bind-value:event="oninput"/>
-    <button class="btn btn-outline-secondary" type="button" id="button-search" @onclick="HandleSearch">Search
-    </button>
-</div>
-
-<br/>
-
-@if (AllItems == null)
+@if (IsLoading)
 {
-    <p>Loading...</p>
-}
-else if (!AllItems.Any())
-{
-    <p>No clothing items found.</p>
+    <div class="position-absolute w-75 h-75 d-flex flex-column align-items-center bg-white justify-content-center">
+        <img src="images/loading.gif" alt="loading"/>
+    </div>
 }
 else
 {
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Brand</th>
-            <th>Size</th>
-            <th>Color</th>
-            <th>Purchase Date</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in AllItems)
-        {
-            <tr @key="item.Id">
-                <td>@item.Name</td>
-                <td>@item.Category.ClothingType.ToString()</td>
-                <td>@item.Brand.Name</td>
-                <td>@item.Size.ToString()</td>
-                <td>@item.Color</td>
-                <td>@item.PurchasedDate.ToShortDateString()</td>
+    <h1>Wardrobe Inventory</h1>
+    <br/>
+
+    <div>
+        <SearchBox Items="_allItems" OnSearch="@UpdateFilteredItems"></SearchBox>
+    </div>
+
+    <br/>
+
+    if (_filteredItemsByName.Any())
+    {
+        <table class="table table-responsive table-hover table-custom">
+            <thead class="text-center">
+            <tr>
+                <th>Name</th>
+                <th colspan="5">Description</th>
             </tr>
-        }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            @foreach (var item in _filteredItemsByName)
+            {
+                <tr @key="item.Id">
+                    <td>@item.Name</td>
+                    <td>@item.Category.ToString()</td>
+                    <td>@item.Brand</td>
+                    @if (item.Category == ClothingCategory.Sneakers || item.Category == ClothingCategory.Boots)
+                    {
+                        <td>@item.ShoeSize</td>
+                    }
+                    else if (item.Category == ClothingCategory.Jeans)
+                    {
+                        <td>@item.JeansWaist/@item.JeansInseam</td>
+                    }
+                    else
+                    {
+                        <td>@item.ShirtSize</td>
+                    }
+                    <td>@item.Color</td>
+                    <td style="width: 10%">
+                        <button type="button" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i></button>
+                        <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No clothing items found.</p>
+    }
 }
 
 
 @code {
     [Inject] public IClothingItemService ClothingItemService { get; set; }
 
-    private string _clothingFilter;
+    private readonly List<ClothingItem> _allItems = new();
 
+    private IEnumerable<ClothingItem> _filteredItemsByName;
 
-    private List<ClothingItem> AllItems = new();
-
-    private string ClothingFilter
-    {
-        get => _clothingFilter;
-        set => _clothingFilter = value ?? "";
-    }
-
-    private bool IsLoading = true;
+    private bool IsLoading { get; set; } = true;
 
     protected override async Task OnInitializedAsync()
     {
-        var fetched = await ClothingItemService.GetAllClothingItemsAsync();
+        var items = await LoadClothingItems();
 
-        AllItems = fetched?.ToList() ?? new List<ClothingItem>();
-
+        _filteredItemsByName = items.ToList();
 
         IsLoading = false;
     }
 
-
-    private void HandleSearch()
+    private async Task<List<ClothingItem>> LoadClothingItems()
     {
+        return await ClothingItemService.GetAllClothingItemsAsync();
+    }
+
+    private void UpdateFilteredItems(string searchTerm)
+    {
+        if (string.IsNullOrEmpty(searchTerm))
+        {
+            _filteredItemsByName = _allItems.ToList();
+        }
+        else
+        {
+            _filteredItemsByName = _allItems.Where(c => c.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
     }
 
 }
