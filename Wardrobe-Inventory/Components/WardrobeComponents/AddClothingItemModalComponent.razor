@@ -1,6 +1,6 @@
 ﻿<Modal @ref="addModal" Title="Add Clothing Item">
     <BodyTemplate>
-        <EditForm Model="ClothingItem" OnValidSubmit="@HandleValidSubmit">
+        <EditForm Model="ClothingItem" OnValidSubmit="@HandleValidSubmit" FormName="addClothingItem">
             <DataAnnotationsValidator></DataAnnotationsValidator>
 
             <div class="form-group">
@@ -31,7 +31,7 @@
             {
                 <label for="sizeFormInput">Jean Waist Size</label>
                 <InputNumber @bind-Value="ClothingItem.JeansWaist" class="form-control"></InputNumber>
-                <label for="sizeFormInput">Jean Seam Size</label>
+                <label for="sizeFormInput">Jean Inseam Size</label>
                 <InputNumber @bind-Value="ClothingItem.JeansInseam" class="form-control"></InputNumber>
             }
             else
@@ -50,9 +50,19 @@
                 <ValidationMessage For="() => ClothingItem.Color"></ValidationMessage>
             </div>
             <div class="form-group">
-                <label class="form-label">Add Image</label>
-                <InputFile accept=".png, .jpg, .jpeg" OnChange="@HandleFileSelection"></InputFile>
+                <label class="form-label">Add Image</label><br/>
+                <small style="color: red">Image size cannot exceed 2 MB.</small><br/>
+                <InputFile accept=".png, .jpg, .jpeg" OnChange="@HandleFileSelection"
+                           @bind-Value="ClothingItem.ImagePath"></InputFile>
             </div>
+            @if (_fileSizeTooLarge)
+            {
+                <Alert Color="AlertColor.Danger">
+                    <Icon Name="IconName.ExclamationTriangleFill" class="me-2"></Icon>
+                    File size too large. Image will not be uploaded.
+                </Alert>
+            }
+            <br/>
             <Button Color="ButtonColor.Secondary" @onclick="OnHideModalClick">Close</Button>
             <button type="submit" class="btn btn-success">Add</Button>
         </EditForm>
@@ -63,10 +73,11 @@
 
 @code{
     private Modal addModal = default!;
-    private IBrowserFile imagePath;
+    private IBrowserFile? _imagePath;
+    private bool _fileSizeTooLarge;
 
     public ClothingItem ClothingItem { get; set; } = new();
-    [Parameter] public List<string> ClothingCategory { get; set; }
+    [Parameter] public List<string>? ClothingCategory { get; set; }
     [Parameter] public EventCallback<ClothingItem> Add { get; set; }
 
     private async Task OnShowModalClick()
@@ -81,16 +92,22 @@
 
     private async Task HandleFileSelection(InputFileChangeEventArgs e)
     {
-        imagePath = e.File;
-        if (imagePath != null)
-        {
-            // Read the file into a memory stream
-            var buffer = new byte[imagePath.Size];
-            await imagePath.OpenReadStream().ReadAsync(buffer);
+        var file = e.File;
 
-            // Convert to Base64 string for immediate display
-            ClothingItem.ImagePath = $"data:{imagePath.ContentType};base64,{Convert.ToBase64String(buffer)}";
+        const long maxBytes = 2 * 1024 * 1024; // 2 MB
+        if (file.Size > maxBytes)
+        {
+            _fileSizeTooLarge = true;
+            return;
         }
+
+        _imagePath = file;
+
+        var buffer = new byte[file.Size];
+        await file.OpenReadStream().ReadAsync(buffer);
+
+        ClothingItem.ImagePath = $"data:{file.ContentType};base64,{Convert.ToBase64String(buffer)}";
+
     }
 
     private async Task HandleValidSubmit(EditContext arg)

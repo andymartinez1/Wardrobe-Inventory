@@ -58,7 +58,9 @@ else
                 </TemplateColumn>
                 <PropertyColumn Property="i => i.Color" Sortable="true" Align="Align.Center"></PropertyColumn>
                 <TemplateColumn Title="Actions" Align="Align.Center" Context="item">
-                    <button type="button" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i></button>
+                    <EditClothingItemModalComponent ClothingCategory="@_categories"
+                                                    Edit="EditClothingItem"
+                                                    ClothingItem="item"></EditClothingItemModalComponent>
                     <DeleteClothingItemModalComponent
                         Delete="async () => await DeleteClothingItem(item.Id)"></DeleteClothingItemModalComponent>
                 </TemplateColumn>
@@ -134,6 +136,13 @@ else
     private async Task AddClothingItem(ClothingItem clothingItem)
     {
         await ClothingItemService.AddClothingItemAsync(clothingItem);
+
+        NavigationManager.NavigateTo("/", true);
+    }
+
+    private async Task EditClothingItem(ClothingItem clothingItem)
+    {
+        await ClothingItemService.UpdateClothingItemAsync(clothingItem);
 
         NavigationManager.NavigateTo("/", true);
     }

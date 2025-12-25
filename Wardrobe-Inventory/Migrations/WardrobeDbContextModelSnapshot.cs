@@ -31,21 +31,19 @@ namespace Wardrobe_Inventory.Migrations
 
                     b.Property<string>("Brand")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("Category")
                         .HasColumnType("int");
 
                     b.Property<string>("Color")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("ImagePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsFavorite")
-                        .HasColumnType("bit");
 
                     b.Property<int?>("JeansInseam")
                         .HasColumnType("int");
@@ -55,14 +53,14 @@ namespace Wardrobe_Inventory.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<int?>("ShirtSize")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("ShoeSize")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(4,1)");
 
                     b.HasKey("Id");
 

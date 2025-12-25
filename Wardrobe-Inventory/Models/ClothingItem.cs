@@ -29,12 +29,9 @@ public class ClothingItem
     public int? JeansInseam { get; set; }
 
     [Required]
-    [MaxLength(15)]
+    [MaxLength(20)]
     public string Color { get; set; } = string.Empty;
 
-    public bool IsFavorite { get; set; } = false;
-
-    [Display(Name = "Image")]
     public string? ImagePath { get; set; } = string.Empty;
 }
 

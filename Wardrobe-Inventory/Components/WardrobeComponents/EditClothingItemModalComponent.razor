@@ -1,5 +1,121 @@
-﻿<h3>ModalComponent</h3>
+﻿<Modal @ref="editModal" Title="Edit Clothing Item">
+    <BodyTemplate>
+        <EditForm Model="ClothingItem" OnValidSubmit="@HandleValidSubmit" FormName="editClothingItem">
+            <DataAnnotationsValidator></DataAnnotationsValidator>
 
-@code {
-    
+            <div class="form-group">
+                <label class="form-label">Name</label>
+                <InputText @bind-Value="ClothingItem.Name" class="form-control"></InputText>
+                <ValidationMessage For="() => ClothingItem.Name"></ValidationMessage>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Category</label>
+                <InputSelect @bind-Value="ClothingItem.Category" class="form-control">
+                    @foreach (var category in Enum.GetValues(typeof(ClothingCategory)))
+                    {
+                        <option value="@category">@category</option>
+                    }
+                </InputSelect>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Brand</label>
+                <InputText @bind-Value="ClothingItem.Brand" class="form-control"></InputText>
+                <ValidationMessage For="() => ClothingItem.Brand"></ValidationMessage>
+            </div>
+            @if (ClothingItem.Category == Models.ClothingCategory.Sneakers || ClothingItem.Category == Models.ClothingCategory.Boots)
+            {
+                <label for="sizeFormInput">Shoe Size</label>
+                <InputNumber @bind-Value="ClothingItem.ShoeSize" class="form-control"></InputNumber>
+            }
+            else if (ClothingItem.Category == Models.ClothingCategory.Jeans)
+            {
+                <label for="sizeFormInput">Jean Waist Size</label>
+                <InputNumber @bind-Value="ClothingItem.JeansWaist" class="form-control"></InputNumber>
+                <label for="sizeFormInput">Jean Inseam Size</label>
+                <InputNumber @bind-Value="ClothingItem.JeansInseam" class="form-control"></InputNumber>
+            }
+            else
+            {
+                <label for="sizeFormInput">Size</label>
+                <InputSelect @bind-Value="ClothingItem.ShirtSize" class="form-control">
+                    @foreach (var size in Enum.GetValues(typeof(ShirtSize)))
+                    {
+                        <option value="@size">@size</option>
+                    }
+                </InputSelect>
+            }
+            <div class="form-group">
+                <label class="form-label">Color</label>
+                <InputText @bind-Value="ClothingItem.Color" class="form-control"></InputText>
+                <ValidationMessage For="() => ClothingItem.Color"></ValidationMessage>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Add Image</label><br/>
+                <small style="color: red">Image size cannot exceed 2 MB.</small><br/>
+                <InputFile accept=".png, .jpg, .jpeg" OnChange="@HandleFileSelection"
+                           @bind-Value="ClothingItem.ImagePath"></InputFile>
+            </div>
+            @if (_fileSizeTooLarge)
+            {
+                <Alert Color="AlertColor.Danger">
+                    <Icon Name="IconName.ExclamationTriangleFill" class="me-2"></Icon>
+                    File size too large. Image will not be uploaded.
+                </Alert>
+            }
+            <br/>
+            <Button Color="ButtonColor.Secondary" @onclick="OnHideModalClick">Close</Button>
+            <button type="submit" class="btn btn-success">Submit</Button>
+        </EditForm>
+    </BodyTemplate>
+</Modal>
+
+<Button class="btn btn-outline-secondary" @onclick="OnShowModalClick"><i class="bi bi-pencil-square"></i></Button>
+
+@code{
+    private Modal editModal = default!;
+    private IBrowserFile? _imagePath;
+    private bool _fileSizeTooLarge;
+
+    [Parameter] public required ClothingItem ClothingItem { get; set; }
+    [Parameter] public List<string>? ClothingCategory { get; set; }
+    [Parameter] public EventCallback<ClothingItem> Edit { get; set; }
+
+    private async Task OnShowModalClick()
+    {
+        await editModal.ShowAsync();
+    }
+
+    private async Task OnHideModalClick()
+    {
+        await editModal.HideAsync();
+    }
+
+    private async Task HandleFileSelection(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+
+        const long maxBytes = 2 * 1024 * 1024; // 2 MB
+        if (file.Size > maxBytes)
+        {
+            _fileSizeTooLarge = true;
+            return;
+        }
+
+        _imagePath = file;
+
+        var buffer = new byte[file.Size];
+        await file.OpenReadStream().ReadAsync(buffer);
+
+        ClothingItem.ImagePath = $"data:{file.ContentType};base64,{Convert.ToBase64String(buffer)}";
+    }
+
+    private async Task HandleValidSubmit(EditContext arg)
+    {
+        // Pass the new model to the parent (WardrobeInventoryList.razor)
+        await Edit.InvokeAsync(ClothingItem);
+
+        await OnHideModalClick();
+    }
+
+
 }

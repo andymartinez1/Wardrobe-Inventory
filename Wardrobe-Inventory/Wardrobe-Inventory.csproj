@@ -8,6 +8,7 @@
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="docs\images\" />
     <Folder Include="Enums\" />
     <Folder Include="Utils\" />
     <Folder Include="wwwroot\lib\" />
