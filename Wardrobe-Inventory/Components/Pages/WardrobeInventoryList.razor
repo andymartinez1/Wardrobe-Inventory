@@ -28,7 +28,8 @@ else
                     <option value="50">50</option>
                 </select>
             </div>
-            <button class="btn btn-outline-secondary">Add New Clothing Item</button>
+            <AddClothingItemModalComponent ClothingCategory="@_categories"
+                                           Add="AddClothingItem"></AddClothingItemModalComponent>
         </div>
         <div class="card-body pb-2 px-0 mb-0">
             <QuickGrid @ref="clothingItemGrid" Items="Items" ItemKey="x => x.Id"
@@ -72,11 +73,11 @@ else
 @code {
     [Inject] public IClothingItemService ClothingItemService { get; set; }
     public bool IsLoading { get; set; } = true;
-    public bool DeleteDialogOpen { get; set; }
-    private readonly PaginationState pagination = new() {ItemsPerPage = 5};
+    private readonly PaginationState pagination = new() { ItemsPerPage = 5 };
 
     private QuickGrid<ClothingItem> clothingItemGrid;
     private string _categorySearch = string.Empty;
+    private List<string> _categories;
     private List<ClothingItem> _allItems = new();
 
     private IQueryable<ClothingItem> Items
@@ -97,6 +98,8 @@ else
     protected override async Task OnInitializedAsync()
     {
         _allItems = await LoadClothingItems();
+
+        _categories = GetCategoryList();
 
         Items = _allItems.AsQueryable();
 
@@ -119,6 +122,18 @@ else
     private async Task DeleteClothingItem(int id)
     {
         await ClothingItemService.DeleteClothingItemAsync(id);
+
+        NavigationManager.NavigateTo("/", true);
+    }
+
+    private List<string> GetCategoryList()
+    {
+        return _categories = ClothingItemService.GetClothingCategories();
+    }
+
+    private async Task AddClothingItem(ClothingItem clothingItem)
+    {
+        await ClothingItemService.AddClothingItemAsync(clothingItem);
 
         NavigationManager.NavigateTo("/", true);
     }

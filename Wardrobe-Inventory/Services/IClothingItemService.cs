@@ -14,5 +14,5 @@ public interface IClothingItemService
 
     public Task DeleteClothingItemAsync(int id);
 
-    public Task<List<ClothingItem>> SearchClothes(string searchFilter);
+    public List<string> GetClothingCategories();
 }

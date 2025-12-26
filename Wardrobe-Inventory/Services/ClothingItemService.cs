@@ -48,12 +48,13 @@ public class ClothingItemService : IClothingItemService
         await _wardrobeDbContext.SaveChangesAsync();
     }
 
-    public async Task<List<ClothingItem>> SearchClothes(string searchFilter)
+    public List<string> GetClothingCategories()
     {
-        var clothingItems = await GetAllClothingItemsAsync();
+        var Categories = new List<string>();
 
-        return clothingItems
-            .Where(i => i.Name.Contains(searchFilter, StringComparison.OrdinalIgnoreCase))
-            .ToList();
+        foreach (ClothingCategory category in Enum.GetValues(typeof(ClothingCategory)))
+            Categories.Add(category.ToString());
+
+        return Categories;
     }
 }

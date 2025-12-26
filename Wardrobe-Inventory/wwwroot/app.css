@@ -18,6 +18,10 @@ body {
     background: no-repeat center fixed linear-gradient(135deg, var(--color-green), var(--color-gold), var(--color-copper));
 }
 
+main {
+    margin-bottom: 3rem;
+}
+
 h1 {
     text-align: center;
     color: var(--color-grey);

@@ -5,12 +5,17 @@ namespace Wardrobe_Inventory.Models;
 
 public class ClothingItem
 {
-    [Key] public int Id { get; set; }
+    [Key]
+    public int Id { get; set; }
 
-    [Required] [MaxLength(200)] public string Name { get; set; } = string.Empty;
+    [Required]
+    [MaxLength(30)]
+    public string Name { get; set; } = string.Empty;
 
     public ClothingCategory Category { get; set; }
 
+    [Required]
+    [MaxLength(30)]
     public string Brand { get; set; } = string.Empty;
 
     public ShirtSize? ShirtSize { get; set; }
@@ -23,11 +28,14 @@ public class ClothingItem
 
     public int? JeansInseam { get; set; }
 
+    [Required]
+    [MaxLength(15)]
     public string Color { get; set; } = string.Empty;
 
     public bool IsFavorite { get; set; } = false;
 
-    [Display(Name = "Image")] public string ImagePath { get; set; } = string.Empty;
+    [Display(Name = "Image")]
+    public string? ImagePath { get; set; } = string.Empty;
 }
 
 public enum ClothingCategory
@@ -40,7 +48,7 @@ public enum ClothingCategory
     Hoodies,
     Boots,
     Sneakers,
-    Hats
+    Hats,
 }
 
 public enum ShirtSize
@@ -49,5 +57,5 @@ public enum ShirtSize
     M,
     L,
     XL,
-    XXL
+    XXL,
 }
