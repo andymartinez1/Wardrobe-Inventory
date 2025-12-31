@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Wardrobe_Inventory.Data;
-using Wardrobe_Inventory.Models;
+using WardrobeInventory.Data;
+using WardrobeInventory.Models;
 
-namespace Wardrobe_Inventory.Services;
+namespace WardrobeInventory.Services;
 
 public class ClothingItemService : IClothingItemService
 {

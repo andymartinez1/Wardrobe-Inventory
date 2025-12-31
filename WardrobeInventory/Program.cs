@@ -1,6 +1,6 @@
-using Wardrobe_Inventory.Components;
-using Wardrobe_Inventory.Data;
-using Wardrobe_Inventory.Services;
+using WardrobeInventory.Components;
+using WardrobeInventory.Data;
+using WardrobeInventory.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

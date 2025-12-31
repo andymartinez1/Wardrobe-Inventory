@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="WardrobeInventory.IntegrationTests/WardrobeInventory.IntegrationTests.csproj" />
+  <Project Path="WardrobeInventory.UnitTests/WardrobeInventory.UnitTests.csproj" />
+  <Project Path="WardrobeInventory/WardrobeInventory.csproj" />
+</Solution>

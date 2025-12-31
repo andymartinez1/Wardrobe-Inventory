@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Wardrobe_Inventory.Models;
+using WardrobeInventory.Models;
 
-namespace Wardrobe_Inventory.Data;
+namespace WardrobeInventory.Data;
 
 public static class SeedDatabase
 {
@@ -27,7 +27,7 @@ public static class SeedDatabase
                 Category = ClothingCategory.Shirts,
                 Color = "Ocean Stripe",
                 ShirtSize = ShirtSize.M,
-                ImagePath = "/images/crewneck.jpg"
+                ImagePath = "/images/crewneck.jpg",
             },
             new()
             {
@@ -37,7 +37,7 @@ public static class SeedDatabase
                 Color = "Dark Indigo",
                 JeansInseam = 32,
                 JeansWaist = 33,
-                ImagePath = "/images/jeans.jpg"
+                ImagePath = "/images/jeans.jpg",
             },
             new()
             {
@@ -46,7 +46,7 @@ public static class SeedDatabase
                 Category = ClothingCategory.Jackets,
                 Color = "Alpine Green",
                 ShirtSize = ShirtSize.L,
-                ImagePath = "/images/jacket.jpg"
+                ImagePath = "/images/jacket.jpg",
             },
             new()
             {
@@ -55,7 +55,7 @@ public static class SeedDatabase
                 Category = ClothingCategory.Jackets,
                 Color = "Heather Gray",
                 ShirtSize = ShirtSize.L,
-                ImagePath = "/images/hoodie.jpg"
+                ImagePath = "/images/hoodie.jpg",
             },
             new()
             {
@@ -64,7 +64,7 @@ public static class SeedDatabase
                 Category = ClothingCategory.Shirts,
                 Color = "Deep Navy",
                 ShirtSize = ShirtSize.M,
-                ImagePath = "/images/polo.jpg"
+                ImagePath = "/images/polo.jpg",
             },
             new()
             {
@@ -73,7 +73,7 @@ public static class SeedDatabase
                 Category = ClothingCategory.Shirts,
                 Color = "White Pinstripe",
                 ShirtSize = ShirtSize.M,
-                ImagePath = "/images/dress-shirt.jpg"
+                ImagePath = "/images/dress-shirt.jpg",
             },
             new()
             {
@@ -82,7 +82,7 @@ public static class SeedDatabase
                 Category = ClothingCategory.Jeans,
                 Color = "Dark Rinse",
                 JeansInseam = 30,
-                JeansWaist = 31
+                JeansWaist = 31,
             },
             new()
             {
@@ -90,7 +90,7 @@ public static class SeedDatabase
                 Brand = "Nike",
                 Category = ClothingCategory.Sneakers,
                 Color = "White",
-                ShoeSize = 11.5m
+                ShoeSize = 11.5m,
             },
             new()
             {
@@ -98,7 +98,7 @@ public static class SeedDatabase
                 Brand = "Asics",
                 Category = ClothingCategory.Sneakers,
                 Color = "Black/Reflective",
-                ShoeSize = 10.0m
+                ShoeSize = 10.0m,
             },
             new()
             {
@@ -106,7 +106,7 @@ public static class SeedDatabase
                 Brand = "Adidas",
                 Category = ClothingCategory.Sneakers,
                 Color = "White/Gum",
-                ShoeSize = 9.0m
+                ShoeSize = 9.0m,
             },
             new()
             {
@@ -114,7 +114,7 @@ public static class SeedDatabase
                 Brand = "Banana Republic",
                 Category = ClothingCategory.Shirts,
                 Color = "Powder Blue",
-                ShirtSize = ShirtSize.S
+                ShirtSize = ShirtSize.S,
             },
             new()
             {
@@ -122,7 +122,7 @@ public static class SeedDatabase
                 Brand = "H&M",
                 Category = ClothingCategory.Shirts,
                 Color = "Distressed Red",
-                ShirtSize = ShirtSize.M
+                ShirtSize = ShirtSize.M,
             },
             new()
             {
@@ -131,7 +131,7 @@ public static class SeedDatabase
                 Category = ClothingCategory.Jeans,
                 Color = "Khaki",
                 JeansInseam = 32,
-                JeansWaist = 34
+                JeansWaist = 34,
             },
             new()
             {
@@ -140,7 +140,7 @@ public static class SeedDatabase
                 Category = ClothingCategory.Jeans,
                 Color = "Olive Drab",
                 JeansInseam = 32,
-                JeansWaist = 33
+                JeansWaist = 33,
             },
             new()
             {
@@ -148,7 +148,7 @@ public static class SeedDatabase
                 Brand = "The North Face",
                 Category = ClothingCategory.Jackets,
                 Color = "Electric Blue",
-                ShirtSize = ShirtSize.M
+                ShirtSize = ShirtSize.M,
             },
             new()
             {
@@ -156,7 +156,7 @@ public static class SeedDatabase
                 Brand = "Zara",
                 Category = ClothingCategory.Jackets,
                 Color = "Charcoal",
-                ShirtSize = ShirtSize.L
+                ShirtSize = ShirtSize.L,
             },
             new()
             {
@@ -164,7 +164,7 @@ public static class SeedDatabase
                 Brand = "Uniqlo",
                 Category = ClothingCategory.Shirts,
                 Color = "Navy/White",
-                ShirtSize = ShirtSize.S
+                ShirtSize = ShirtSize.S,
             },
             new()
             {
@@ -173,7 +173,7 @@ public static class SeedDatabase
                 Category = ClothingCategory.Jeans,
                 Color = "Light Stone",
                 JeansInseam = 30,
-                JeansWaist = 30
+                JeansWaist = 30,
             },
             new()
             {
@@ -181,7 +181,7 @@ public static class SeedDatabase
                 Brand = "Vans",
                 Category = ClothingCategory.Sneakers,
                 Color = "Black",
-                ShoeSize = 9.5m
+                ShoeSize = 9.5m,
             },
             new()
             {
@@ -189,7 +189,7 @@ public static class SeedDatabase
                 Brand = "Salomon",
                 Category = ClothingCategory.Sneakers,
                 Color = "Orange/Black",
-                ShoeSize = 11.0m
+                ShoeSize = 11.0m,
             },
             new()
             {
@@ -197,7 +197,7 @@ public static class SeedDatabase
                 Brand = "J.Crew",
                 Category = ClothingCategory.Shirts,
                 Color = "Sand",
-                ShirtSize = ShirtSize.L
+                ShirtSize = ShirtSize.L,
             },
             new()
             {
@@ -206,7 +206,7 @@ public static class SeedDatabase
                 Category = ClothingCategory.Jeans,
                 Color = "Indigo Fade",
                 JeansInseam = 34,
-                JeansWaist = 34
+                JeansWaist = 34,
             },
             new()
             {
@@ -214,7 +214,7 @@ public static class SeedDatabase
                 Brand = "Converse",
                 Category = ClothingCategory.Sneakers,
                 Color = "Black/White",
-                ShoeSize = 10.5m
+                ShoeSize = 10.5m,
             },
             new()
             {
@@ -222,7 +222,7 @@ public static class SeedDatabase
                 Brand = "Columbia",
                 Category = ClothingCategory.Jackets,
                 Color = "Stone",
-                ShirtSize = ShirtSize.M
+                ShirtSize = ShirtSize.M,
             },
             new()
             {
@@ -230,7 +230,7 @@ public static class SeedDatabase
                 Brand = "New Balance",
                 Category = ClothingCategory.Sneakers,
                 Color = "Grey",
-                ShoeSize = 10.0m
+                ShoeSize = 10.0m,
             },
             new()
             {
@@ -238,7 +238,7 @@ public static class SeedDatabase
                 Brand = "Patagonia",
                 Category = ClothingCategory.Coats,
                 Color = "Marine Blue",
-                ShirtSize = ShirtSize.L
+                ShirtSize = ShirtSize.L,
             },
             new()
             {
@@ -246,7 +246,7 @@ public static class SeedDatabase
                 Brand = "Mango",
                 Category = ClothingCategory.Coats,
                 Color = "Camel",
-                ShirtSize = ShirtSize.M
+                ShirtSize = ShirtSize.M,
             },
             new()
             {
@@ -254,7 +254,7 @@ public static class SeedDatabase
                 Brand = "Champion",
                 Category = ClothingCategory.Hoodies,
                 Color = "Black",
-                ShirtSize = ShirtSize.L
+                ShirtSize = ShirtSize.L,
             },
             new()
             {
@@ -262,28 +262,28 @@ public static class SeedDatabase
                 Brand = "H&M",
                 Category = ClothingCategory.Hoodies,
                 Color = "Olive",
-                ShirtSize = ShirtSize.M
+                ShirtSize = ShirtSize.M,
             },
             new()
             {
                 Name = "Classic Baseball Cap",
                 Brand = "New Era",
                 Category = ClothingCategory.Hats,
-                Color = "Navy"
+                Color = "Navy",
             },
             new()
             {
                 Name = "Wool Beanie",
                 Brand = "Carhartt",
                 Category = ClothingCategory.Hats,
-                Color = "Camel"
+                Color = "Camel",
             },
             new()
             {
                 Name = "Corduroy Bucket Hat",
                 Brand = "Stüssy",
                 Category = ClothingCategory.Hats,
-                Color = "Brown"
+                Color = "Brown",
             },
             new()
             {
@@ -292,7 +292,7 @@ public static class SeedDatabase
                 Category = ClothingCategory.Shorts,
                 Color = "Black",
                 JeansInseam = 9,
-                JeansWaist = 32
+                JeansWaist = 32,
             },
             new()
             {
@@ -301,7 +301,7 @@ public static class SeedDatabase
                 Category = ClothingCategory.Shorts,
                 Color = "Khaki",
                 JeansInseam = 10,
-                JeansWaist = 34
+                JeansWaist = 34,
             },
             new()
             {
@@ -310,7 +310,7 @@ public static class SeedDatabase
                 Category = ClothingCategory.Shorts,
                 Color = "Turquoise",
                 JeansInseam = 7,
-                JeansWaist = 32
+                JeansWaist = 32,
             },
             new()
             {
@@ -318,7 +318,7 @@ public static class SeedDatabase
                 Brand = "COS",
                 Category = ClothingCategory.Coats,
                 Color = "Charcoal",
-                ShirtSize = ShirtSize.M
+                ShirtSize = ShirtSize.M,
             },
             new()
             {
@@ -326,7 +326,7 @@ public static class SeedDatabase
                 Brand = "Columbia",
                 Category = ClothingCategory.Hoodies,
                 Color = "Yellow",
-                ShirtSize = ShirtSize.S
+                ShirtSize = ShirtSize.S,
             },
             new()
             {
@@ -335,14 +335,14 @@ public static class SeedDatabase
                 Category = ClothingCategory.Shorts,
                 Color = "Grey",
                 JeansInseam = 5,
-                JeansWaist = 30
+                JeansWaist = 30,
             },
             new()
             {
                 Name = "Fitted Snapback Cap",
                 Brand = "Adidas",
                 Category = ClothingCategory.Hats,
-                Color = "Black/White"
+                Color = "Black/White",
             },
             new()
             {
@@ -350,8 +350,8 @@ public static class SeedDatabase
                 Brand = "The North Face",
                 Category = ClothingCategory.Coats,
                 Color = "Forest",
-                ShirtSize = ShirtSize.XL
-            }
+                ShirtSize = ShirtSize.XL,
+            },
         };
 
         context.AddRange(clothingItems);

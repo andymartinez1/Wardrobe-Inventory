@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Wardrobe_Inventory.Models;
+using WardrobeInventory.Models;
 
-namespace Wardrobe_Inventory.Data;
+namespace WardrobeInventory.Data;
 
 public class WardrobeDbContext : DbContext
 {

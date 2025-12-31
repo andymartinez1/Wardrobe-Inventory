@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Wardrobe_Inventory.Data;
+using WardrobeInventory.Data;
 
 #nullable disable
 
-namespace Wardrobe_Inventory.Migrations
+namespace WardrobeInventory.Migrations
 {
     [DbContext(typeof(WardrobeDbContext))]
-    [Migration("20251225152531_Initial")]
+    [Migration("20251231010355_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace Wardrobe_Inventory.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Wardrobe_Inventory.Models.ClothingItem", b =>
+            modelBuilder.Entity("WardrobeInventory.Models.ClothingItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

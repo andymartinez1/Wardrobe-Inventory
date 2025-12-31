@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Wardrobe_Inventory.Models;
+namespace WardrobeInventory.Models;
 
 public class ClothingItem
 {

@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Wardrobe_Inventory.Data;
+using WardrobeInventory.Data;
 
 #nullable disable
 
-namespace Wardrobe_Inventory.Migrations
+namespace WardrobeInventory.Migrations
 {
     [DbContext(typeof(WardrobeDbContext))]
     partial class WardrobeDbContextModelSnapshot : ModelSnapshot
@@ -21,7 +21,7 @@ namespace Wardrobe_Inventory.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Wardrobe_Inventory.Models.ClothingItem", b =>
+            modelBuilder.Entity("WardrobeInventory.Models.ClothingItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Wardrobe_Inventory.Migrations
+namespace WardrobeInventory.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration
