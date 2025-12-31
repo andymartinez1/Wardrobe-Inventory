@@ -2,7 +2,7 @@
 
 A full-featured wardrobe inventory web app built with **ASP.NET Blazor** and **.NET 10** that helps you catalog and manage your clothing collection in a clean, modern UI. The app provides a streamlined workflow for adding items, updating details, uploading images, and browsing your wardrobe efficiently—making it easy to stay organized and quickly find what you own.
 
-![HomeScreen.gif](Wardrobe-Inventory/docs/images/HomeScreen.gif)
+![HomeScreen.gif](WardrobeInventory/docs/images/HomeScreen.gif)
 
 ## Features
 
@@ -17,13 +17,13 @@ A full-featured wardrobe inventory web app built with **ASP.NET Blazor** and **.
   - The size field changes depending on the category selected. E.g.: If jeans are selected, the form will ask for waist and inseam sizes
 
 ## Edit:
-![Edit.gif](Wardrobe-Inventory/docs/images/Edit.gif)
+![Edit.gif](WardrobeInventory/docs/images/Edit.gif)
 
 ## Delete:
-![Delete.gif](Wardrobe-Inventory/docs/images/Delete.gif)
+![Delete.gif](WardrobeInventory/docs/images/Delete.gif)
 
 ## Form Vaildation:
-![FormValidation.gif](Wardrobe-Inventory/docs/images/FormValidation.gif)
+![FormValidation.gif](WardrobeInventory/docs/images/FormValidation.gif)
 
 ## Getting Started
 
